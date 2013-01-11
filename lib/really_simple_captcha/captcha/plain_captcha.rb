@@ -6,6 +6,9 @@ module ReallySimpleCaptcha::Captcha
     include ActiveSupport::Configurable
     config_accessor :field_name
 
+    config_accessor :width
+    config_accessor :height
+
     config_accessor :implode_amount
     config_accessor :wave_amplitude
     config_accessor :wave_length
@@ -53,6 +56,9 @@ module ReallySimpleCaptcha::Captcha
     end
 
     def self.generate_image(captcha_text, args={})
+      width = args[:width] || 120
+      height = args[:height] || 40
+
       wave_amplitude = args[:wave_amplitude] || 4.0
       wave_length = args[:wave_length] || 60.0
       implode_amount = args[:implode_amount] || 0.2
@@ -62,7 +68,7 @@ module ReallySimpleCaptcha::Captcha
 
       background_color = args[:background_color] || 'white'
 
-      image = ::Magick::Image.new(120, 40) do
+      image = ::Magick::Image.new(width, height) do
         self.background_color = background_color
       end
 

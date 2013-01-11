@@ -53,6 +53,8 @@ ReallySimpleCaptcha::Captcha::PlainCaptcha.configure do |config|
   # font size
   config.pointsize = 22
   # image modification options
+  config.width = 120
+  config.height = 40
   config.implode_amount = 0.2
   config.wave_amplitude = 4.0
   config.wave_length = 60.0
