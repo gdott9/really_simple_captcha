@@ -8,7 +8,7 @@ module ReallySimpleCaptcha::Captcha
       height: 40,
       wave_amplitude: 4.0,
       wave_length: 60.0,
-      implode_amount: 0.2,
+      implode_amount: 0.3,
       pointsize: 22,
       text_fill: 'darkblue',
       background_color: 'white'
@@ -75,7 +75,7 @@ module ReallySimpleCaptcha::Captcha
 
       text.annotate(image, 0, 0, 0, 0, captcha_text)
 
-      image = image.wave(options[:wave_amplitude], options[:wave_length]).implode(options[:implode_amount])
+      image = image.implode(options[:implode_amount]).wave(options[:wave_amplitude], options[:wave_length])
 
       Base64.strict_encode64(image.to_blob { self.format = 'GIF' })
     end
