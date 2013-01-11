@@ -44,8 +44,9 @@ ReverseCaptcha and PlainCaptcha must be configured separately.
 ### PlainCaptcha
 ```
 ReallySimpleCaptcha::Captcha::PlainCaptcha.configure do |config|
-  config.text_length = 6
+  config.field_name = :plain_captcha
 
+  config.text_length = 6
   # colors
   config.fill = 'darkblue'
   config.background_color = 'white'
@@ -61,7 +62,7 @@ end
 ### ReverseCaptcha
 ```
 ReallySimpleCaptcha::Captcha::ReverseCaptcha.configure do |config|
-  config.field_name = 'reverse_captcha'
+  config.field_name = :reverse_captcha
 end
 ```
 

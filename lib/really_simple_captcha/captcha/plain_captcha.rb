@@ -4,6 +4,8 @@ require 'base64'
 module ReallySimpleCaptcha::Captcha
   module PlainCaptcha
     include ActiveSupport::Configurable
+    config_accessor :field_name
+
     config_accessor :implode_amount
     config_accessor :wave_amplitude
     config_accessor :wave_length
@@ -12,6 +14,7 @@ module ReallySimpleCaptcha::Captcha
     config_accessor :background_color
     config_accessor :text_length
 
+    config.field_name = :plain_captcha
     config.text_length = 6
 
     def self.configure(&block)
@@ -20,7 +23,7 @@ module ReallySimpleCaptcha::Captcha
 
     module ViewHelpers
       def plain_captcha_tag
-        session[:plain_captcha] = ReallySimpleCaptcha::Util.random_string(PlainCaptcha.text_length)
+        session[PlainCaptcha.field_name] = ReallySimpleCaptcha::Util.random_string(PlainCaptcha.text_length)
 
         image = PlainCaptcha.generate_image(session[:plain_captcha], {
           implode_amount: PlainCaptcha.implode_amount,
@@ -33,7 +36,7 @@ module ReallySimpleCaptcha::Captcha
 
         content_tag :div, class: 'plain_captcha' do
           html = image_tag "data:image/gif;base64,#{image}", alt: "Captcha"
-          html.concat text_field_tag 'plain_captcha', nil, required: 'required', autocomplete: 'off'
+          html.concat text_field_tag PlainCaptcha.field_name, nil, required: 'required', autocomplete: 'off'
 
           html
         end
@@ -42,8 +45,8 @@ module ReallySimpleCaptcha::Captcha
 
     module ControllerHelpers
       def plain_captcha_valid?
-        res = params[:plain_captcha] == session[:plain_captcha]
-        session[:plain_captcha] = nil
+        res = params[PlainCaptcha.field_name] == session[PlainCaptcha.field_name]
+        session[PlainCaptcha.field_name] = nil
 
         res
       end
