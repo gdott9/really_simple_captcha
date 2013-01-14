@@ -17,6 +17,6 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
+  gem.add_runtime_dependency 'rails', '>= 3.0.0'
   gem.add_runtime_dependency 'rmagick'
-  gem.add_runtime_dependency 'activesupport'
 end
