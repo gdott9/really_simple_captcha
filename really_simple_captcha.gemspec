@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["guillaume+github@dott.fr"]
   gem.summary       = %q{A really simple captcha gem}
   gem.description   = %q{Simple gem to add captcha or negative captcha to your Rails 3 application}
-  gem.homepage      = "https://github.com/gdott9/really_simple_captcha"
+  gem.homepage      = "https://github.com/lafourmi/really_simple_captcha"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
