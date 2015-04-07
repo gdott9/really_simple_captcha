@@ -1,4 +1,4 @@
-require 'RMagick'
+require 'rmagick'
 require 'base64'
 
 module ReallySimpleCaptcha::Captcha
