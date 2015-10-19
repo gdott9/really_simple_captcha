@@ -11,7 +11,7 @@ module ReallySimpleCaptcha::Captcha
 
     module ViewHelpers
       def reverse_captcha_tag
-        content_tag :div, text_field_tag(ReverseCaptcha.field_name), class: 'reverse_captcha', style: 'display: none'
+        content_tag :div, text_field_tag(ReverseCaptcha.field_name, nil, id: "reverse_captcha_#{Time.now.nsec}"), class: 'reverse_captcha', style: 'display: none'
       end
     end
 

@@ -44,7 +44,7 @@ module ReallySimpleCaptcha::Captcha
 
         content_tag :div, class: 'plain_captcha' do
           html = image_tag "data:image/gif;base64,#{image}", alt: "Captcha"
-          html.concat text_field_tag PlainCaptcha.field_name, nil, required: 'required', autocomplete: 'off'
+          html.concat text_field_tag PlainCaptcha.field_name, nil, id: "reverse_captcha_#{Time.now.nsec}", required: 'required', autocomplete: 'off'
 
           html
         end
